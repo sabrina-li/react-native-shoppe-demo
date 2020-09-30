@@ -68,7 +68,6 @@ local.properties
 .gradle
 local.properties
 *.iml
-/android/
 
 # Watchman
 .watchmanconfig
