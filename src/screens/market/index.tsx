@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { ActivityIndicator } from 'react-native-paper';
 import ProductCard from '../../components/productCard';
 import { PRODUCT_URL } from '../../../env.json';
 
@@ -19,14 +20,16 @@ const MarketScreen = () => {
   }, []);
 
   return (
-    <View style={{flex:1}}>
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      {data.map(p =>
-        <View key={p.id}>
-          <ProductCard {...p} />
-        </View>
-      )}
-    </ScrollView>
+    <View style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        {isLoading
+          ? <ActivityIndicator />
+          : data.map(p =>
+            <View key={p.id}>
+              <ProductCard {...p} />
+            </View>
+          )}
+      </ScrollView>
     </View>
   );
 }

@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useEffect, useState }  from 'react';
+import React from 'react';
 import AppNavigator from './navigation'
 
 const App: () => React.ReactNode = () => {
