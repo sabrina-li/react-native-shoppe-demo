@@ -1,0 +1,34 @@
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import ProductCard from '../../components/productCard';
+import { PRODUCT_URL } from '../../../env.json';
+
+const MarketScreen = () => {
+
+  // TODO: migrate to redux
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(PRODUCT_URL)
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
+
+  return (
+    <View style={{flex:1}}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      {data.map(p =>
+        <View key={p.id}>
+          <ProductCard {...p} />
+        </View>
+      )}
+    </ScrollView>
+    </View>
+  );
+}
+
+export default MarketScreen;

@@ -1,31 +1,40 @@
 import * as React from 'react';
-import { Button } from 'react-native';
+// import { Button } from 'react-native';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import MarketScreen from '../scenes/market'
-import CartScreen from '../scenes/cart'
+import MarketScreen from '../screens/market'
+import CartScreen from '../screens/cart'
+
+import { Button, useTheme } from 'react-native-paper';
+import { View } from 'react-native';
 
 const Stack = createStackNavigator();
 
-const AppNavigator = () => {
+const AppNavigator = (props) => {
+  const { colors } = useTheme();
   return (
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Market"
-        screenOptions={({route, navigation}) => ({
-          headerStyle: {
-            backgroundColor: '#F5447B',
+        screenOptions={({ route, navigation }) => ({
+          headerStyle: { backgroundColor: colors.primary },
+          headerTintColor: colors.accent,
+          headerTitleStyle: {
+            color: colors.accent,
           },
+
           headerRight: () => (
-            <Button
-              onPress={() => navigation.navigate('Cart')}
-              title="Cart"
-              color='#F5447B'
-            />
+            <View>
+              <Button
+                icon="cart"
+                color={colors.accent}
+                style={{ width: "100%" }}
+                onPress={() => navigation.navigate('Cart')}>
+              </Button>
+            </View>
           ),
-          headerTintColor: '#fff',
         })}
       >
         <Stack.Screen

@@ -116,3 +116,6 @@ buck-out
 # Visual studio
 .vscode
 .vs
+
+# env
+env.json

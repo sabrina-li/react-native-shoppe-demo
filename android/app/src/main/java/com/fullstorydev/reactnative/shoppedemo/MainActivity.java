@@ -1,4 +1,4 @@
-package com.shoppedemo;
+package com.fullstorydev.reactnative.shoppedemo;
 
 import com.facebook.react.ReactActivity;
 
