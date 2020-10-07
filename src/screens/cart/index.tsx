@@ -1,12 +1,26 @@
 import * as React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, ScrollView } from 'react-native';
+import ItemCard from '../../components/itemCard';
 
-const CartScreen = ({navigation}) => {
+import { connect } from 'react-redux';
+
+const CartScreen = (props) => {
   return (
-    <View>
-      <Text>this is cart view</Text>
+    <View style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        {Object.keys(props.items).map(id =>
+            <View key={id}>
+              <ItemCard {...props.items[id]} />
+            </View>
+        )}
+      </ScrollView>
     </View>
   );
 }
 
-export default CartScreen;
+const mapStateToProps = (state) => {
+  const { items } = state
+  return items
+};
+
+export default connect(mapStateToProps)(CartScreen);

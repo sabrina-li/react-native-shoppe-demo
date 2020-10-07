@@ -8,7 +8,12 @@ import App from './src/App';
 import {name as appName} from './app.json';
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { Provider as StoreProvider } from 'react-redux';
+import { createStore } from 'redux';
+import ItemReducer from './src/redux/reducers/ItemReducer';
 
+
+const store = createStore(ItemReducer);
 
 const theme = {
   ...DefaultTheme,
@@ -23,9 +28,11 @@ const theme = {
 
 export default function Main() {
   return (
-    <PaperProvider theme={theme}>
-      <App />
-    </PaperProvider>
+    <StoreProvider store={store}>
+      <PaperProvider theme={theme}>
+        <App />
+      </PaperProvider>
+    </StoreProvider>
   );
 }
 
