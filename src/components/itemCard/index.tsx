@@ -4,21 +4,22 @@ import { Card, Title, Paragraph, Button } from 'react-native-paper';
 import { IMAGE_BASE_URL } from '../../../env.json';
 import { bindActionCreators } from 'redux';
 import { addItem, removeItem } from '../../redux/actions/ItemActions';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../redux/store';
 
-// interface ItemCardProps {
-//   id: number;
-//   title: string;
-//   description: string;
-//   image: string;
-//   price: number;
-//   unit: string;
-//   quantity: number;
-// }
+interface ItemCardProps {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  price: number;
+  unit: string;
+  quantity: number;
+}
 
-// const ItemCard: React.FC<ItemCardProps> = (props: ItemCardProps) =>
-const ItemCard = (props) => {
-  console.log( props)
+const ItemCard: React.FC<ItemCardProps> = (props: ItemCardProps) =>{
+  const dispatch: AppDispatch = useDispatch();
+
   return (
     <View key={props.title} style={{ width: '100%' }}>
     <Card>
@@ -28,20 +29,13 @@ const ItemCard = (props) => {
         <Paragraph>{props.description}</Paragraph>
       </Card.Content>
       <Card.Actions>
-        <Button mode='contained' onPress={() => { props.addItem({...props}); }}>+</Button>
+        <Button mode='contained' onPress={() => { dispatch(addItem({...props})); }}>+</Button>
         <Text>{props.quantity}</Text>
-        <Button mode='contained' onPress={() => { props.removeItem({...props}); }}>-</Button>
+        <Button mode='contained' onPress={() => { dispatch(removeItem({...props})); }}>-</Button>
       </Card.Actions>
     </Card>
   </View>
   )
 }
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    addItem,
-    removeItem,
-  }, dispatch)
-);
-
-export default connect(null, mapDispatchToProps)(ItemCard);
+export default ItemCard;

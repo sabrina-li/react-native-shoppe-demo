@@ -7,10 +7,10 @@ import { PRODUCT_URL } from '../../../env.json';
 
 const MarketScreen = () => {
 
-  // TODO: migrate to redux
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
+  // TODO: move to redux action
   useEffect(() => {
     fetch(PRODUCT_URL)
       .then((response) => response.json())

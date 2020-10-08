@@ -2,13 +2,16 @@ import * as React from 'react';
 import { View, ScrollView } from 'react-native';
 import ItemCard from '../../components/itemCard';
 
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { selectors } from '../../redux/selectors';
 
-const CartScreen = (props) => {
+const CartScreen: React.FC = () => {
+  const items = useSelector(selectors.itemSelector);
+
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        {props.itemsState.map(item =>
+        {items.map(item =>
             <View key={item.id}>
               <ItemCard {...item} />
             </View>
@@ -18,9 +21,4 @@ const CartScreen = (props) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  const { itemsState } = state
-  return { itemsState }
-};
-
-export default connect(mapStateToProps)(CartScreen);
+export default CartScreen;
