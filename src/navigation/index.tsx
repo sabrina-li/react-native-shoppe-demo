@@ -6,8 +6,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import MarketScreen from '../screens/market'
 import CartScreen from '../screens/cart'
 
-import { Button, useTheme } from 'react-native-paper';
-import { View } from 'react-native';
+import { Button, useTheme, Title } from 'react-native-paper';
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 
 const Stack = createStackNavigator();
 
@@ -25,13 +26,15 @@ const AppNavigator = (props) => {
           },
 
           headerRight: () => (
-            <View>
+            <View style={{flexDirection: 'row',flexWrap: 'wrap'}}>
               <Button
                 icon="cart"
                 color={colors.accent}
-                style={{ width: "100%" }}
+                compact={true}
                 onPress={() => navigation.navigate('Cart')}>
               </Button>
+              
+              <Text style={{color:colors.accent, marginTop:7, marginRight:10, fontSize: 15}}>{props.itemsState.reduce((acc,cur) => acc + cur.quantity, 0)}</Text>
             </View>
           ),
         })}
@@ -55,4 +58,10 @@ const AppNavigator = (props) => {
   );
 };
 
-export default AppNavigator;
+const mapStateToProps = (state) => {
+  const { itemsState } = state
+  return { itemsState }
+};
+
+
+export default connect(mapStateToProps)(AppNavigator);

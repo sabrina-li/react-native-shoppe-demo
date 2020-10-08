@@ -8,9 +8,9 @@ const CartScreen = (props) => {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        {Object.keys(props.items).map(id =>
-            <View key={id}>
-              <ItemCard {...props.items[id]} />
+        {props.itemsState.map(item =>
+            <View key={item.id}>
+              <ItemCard {...item} />
             </View>
         )}
       </ScrollView>
@@ -19,8 +19,8 @@ const CartScreen = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  const { items } = state
-  return items
+  const { itemsState } = state
+  return { itemsState }
 };
 
 export default connect(mapStateToProps)(CartScreen);

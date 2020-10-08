@@ -10,10 +10,10 @@ import {name as appName} from './app.json';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { Provider as StoreProvider } from 'react-redux';
 import { createStore } from 'redux';
-import ItemReducer from './src/redux/reducers/ItemReducer';
+import rootReducer from './src/redux/reducers';
 
 
-const store = createStore(ItemReducer);
+const store = createStore(rootReducer);
 
 const theme = {
   ...DefaultTheme,

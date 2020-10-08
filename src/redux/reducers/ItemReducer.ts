@@ -1,32 +1,40 @@
 import { combineReducers } from 'redux';
 import { Product } from '../../types/product';
 
-const INITIAL_STATE = {
-  items: {}
-};
-
-const itemsReducer = (state = INITIAL_STATE, action) => {
+const itemsReducer = (state: Product[] = [], action) => {
   switch (action.type) {
     case 'ADD_ITEM': {
-      
-      const { items } = state;
-
       const newItem = action.payload as Product;
       newItem.quantity = 1;
-      
-      // And put the new item
-      items[newItem.id] ? items[newItem.id].quantity++ : items[newItem.id] = newItem;
 
-      // Finally, update the redux state
-      const newState = { items };
-      return newState;
+      const newItemsState = state.map(i =>  {
+        if (newItem.id === i.id) {
+          newItem.quantity += i.quantity;
+          return newItem;
+        } 
+        return i;
+      });
+
+      if (newItem.quantity === 1) newItemsState.push(newItem);
+      return newItemsState;
     }
+    case 'REMOVE_ITEM': {
+      const removeItem = action.payload as Product;
+      removeItem.quantity = 1;
+      
+      const newItemsState = state.map(i =>  {
+        if (removeItem.id === i.id) {
+          removeItem.quantity = i.quantity-1;
+          return removeItem;
+        } 
+        return {...i};
+      }).filter(i => i.quantity > 0);
 
+      return newItemsState
+    }
     default:
       return state
   }
 };
 
-export default combineReducers({
-  items: itemsReducer
-});
+export default itemsReducer;
