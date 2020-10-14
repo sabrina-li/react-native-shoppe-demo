@@ -16,7 +16,7 @@ interface ProductCardProps {
   unit: string;
 }
 const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: AppDispatch  = useDispatch<AppDispatch>();
 
   return (
     <View key={props.title} style={{ width: '100%' }}>

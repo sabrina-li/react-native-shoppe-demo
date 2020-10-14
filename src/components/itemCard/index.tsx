@@ -18,23 +18,25 @@ interface ItemCardProps {
 }
 
 const ItemCard: React.FC<ItemCardProps> = (props: ItemCardProps) =>{
-  const dispatch: AppDispatch = useDispatch();
-
+  const dispatch: AppDispatch  = useDispatch<AppDispatch>();
+  
   return (
-    <View key={props.title} style={{ width: '100%' }}>
-    <Card>
-      <Card.Cover source={{ uri: IMAGE_BASE_URL + props.image }} style={{ width:"30%"}}/>
-      <Card.Content>
-        <Title>{props.title}</Title>
-        <Paragraph>{props.description}</Paragraph>
-      </Card.Content>
-      <Card.Actions>
-        <Button mode='contained' onPress={() => { dispatch(addItem({...props})); }}>+</Button>
-        <Text>{props.quantity}</Text>
-        <Button mode='contained' onPress={() => { dispatch(removeItem({...props})); }}>-</Button>
-      </Card.Actions>
-    </Card>
-  </View>
+    <Card key={props.title} style={{ width: '100%', padding:15}}>
+      <View style={{display:"flex", flexDirection:"row"}}>
+        <Card.Cover source={{ uri: IMAGE_BASE_URL + props.image }} style={{ width:"40%" }}/>
+        <View style={{ width:"60%"}}>
+        <Card.Content>
+          <Title>{props.title}</Title>
+          <Paragraph>{props.description}</Paragraph>
+        </Card.Content>
+        <Card.Actions style={{paddingTop:50, paddingHorizontal:20}}>
+          <Button mode='contained' onPress={() => { dispatch(addItem({...props})); }}>+</Button>
+          <Text style={{width:"80%", textAlign:"center"}}>{props.quantity}</Text>
+          <Button mode='contained' onPress={() => { dispatch(removeItem({...props})); }}>-</Button>
+        </Card.Actions>
+        </View>
+      </View>
+  </Card>
   )
 }
 
