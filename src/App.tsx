@@ -10,8 +10,6 @@ import React from 'react';
 import AppNavigator from './navigation'
 
 const App: () => React.ReactNode = () => {
-  const usingHermes = typeof HermesInternal === 'object' && HermesInternal !== null;
-
   return (
     <AppNavigator />
   );

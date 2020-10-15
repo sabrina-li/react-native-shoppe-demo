@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Keyboard, View } from 'react-native';
-import { Button, Menu, Divider, Provider, TextInput } from 'react-native-paper';
+import { Button, Menu, TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface DropDownProps {

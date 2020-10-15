@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { View, ScrollView, Keyboard } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
-import { Button, Menu, TextInput, Divider, Text, Title, Portal, Dialog, Paragraph } from 'react-native-paper';
+import { Button, TextInput, Title, Portal, Dialog, Paragraph } from 'react-native-paper';
 import DropDown from '../../components/dropDown';
-import { State, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Months, States, Years } from '../../types/billingAddress';
 
 const CheckoutScreen: React.FC = () => {
@@ -123,16 +122,13 @@ const CheckoutScreen: React.FC = () => {
           onChangeText={text => setSecurityCode(text)}
         />
       </View>
-
-
-
-      <View>
+      <View style={{ paddingBottom: 50, paddingHorizontal: 70 }}>
         <Button mode='contained' onPress={showDialog}>Complete Purchase</Button>
         <Portal>
           <Dialog visible={visible} onDismiss={hideDialog}>
-            <Dialog.Title>{success}</Dialog.Title>
+            <Dialog.Title>{success ? "Success" : "Failed"}</Dialog.Title>
             <Dialog.Content>
-              <Paragraph>Your Purchase is {success}</Paragraph>
+              <Paragraph>Your Purchase {success ? "is successful" : "failed"}</Paragraph>
             </Dialog.Content>
             <Dialog.Actions>
               <Button onPress={hideDialog}>Done</Button>

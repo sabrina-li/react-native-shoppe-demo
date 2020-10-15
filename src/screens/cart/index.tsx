@@ -11,12 +11,12 @@ const CartScreen: React.FC = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <CartHeader/>
+      <CartHeader />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         {items.map(item =>
-            <View key={item.id}>
-              <ItemCard {...item} />
-            </View>
+          <View key={item.id}>
+            <ItemCard {...item} />
+          </View>
         )}
       </ScrollView>
     </View>

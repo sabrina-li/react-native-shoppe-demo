@@ -12,13 +12,6 @@ import { connect } from 'react-redux';
 import CheckoutScreen from '../screens/checkout';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
-// type RootStackParamList = {
-//   Market: undefined;
-//   Cart: undefined;
-
-// };
-
 const Stack = createStackNavigator();
 
 const AppNavigator = (props) => {
@@ -35,15 +28,15 @@ const AppNavigator = (props) => {
           },
 
           headerRight: () => (
-            <View style={{flexDirection: 'row',flexWrap: 'wrap'}}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
               <Button
                 color={colors.accent}
                 compact={true}
                 onPress={() => navigation.navigate('Cart')}>
                 <Icon name="shopping-cart" size={24} />
               </Button>
-              
-              <Text style={{color:colors.accent, marginTop:7, marginRight:10, fontSize: 20}}>{props.itemsState.reduce((acc,cur) => acc + cur.quantity, 0)}</Text>
+
+              <Text style={{ color: colors.accent, marginTop: 7, marginRight: 10, fontSize: 20 }}>{props.itemsState.reduce((acc, cur) => acc + cur.quantity, 0)}</Text>
             </View>
           ),
         })}

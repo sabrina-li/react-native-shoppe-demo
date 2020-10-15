@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { Product } from '../../types/product';
 
 const itemsReducer = (state: Product[] = [], action) => {
@@ -7,11 +6,11 @@ const itemsReducer = (state: Product[] = [], action) => {
       const newItem = action.payload as Product;
       newItem.quantity = 1;
 
-      const newItemsState = state.map(i =>  {
+      const newItemsState = state.map(i => {
         if (newItem.id === i.id) {
           newItem.quantity += i.quantity;
           return newItem;
-        } 
+        }
         return i;
       });
 
@@ -21,13 +20,13 @@ const itemsReducer = (state: Product[] = [], action) => {
     case 'REMOVE_ITEM': {
       const removeItem = action.payload as Product;
       removeItem.quantity = 1;
-      
-      const newItemsState = state.map(i =>  {
+
+      const newItemsState = state.map(i => {
         if (removeItem.id === i.id) {
-          removeItem.quantity = i.quantity-1;
+          removeItem.quantity = i.quantity - 1;
           return removeItem;
-        } 
-        return {...i};
+        }
+        return { ...i };
       }).filter(i => i.quantity > 0);
 
       return newItemsState
