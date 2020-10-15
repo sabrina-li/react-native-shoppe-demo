@@ -6,12 +6,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 interface DropDownProps {
   options: string[];
   label: string;
+  selection: string;
   action: (selection: string) => void;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ label, options, action }) => {
+const DropDown: React.FC<DropDownProps> = ({ label, options, selection, action }) => {
   const [visible, setVisible] = React.useState(false);
-  const [selection, setSelection] = React.useState("AK");
 
   const openMenu = () => setVisible(true);
 
@@ -23,28 +23,31 @@ const DropDown: React.FC<DropDownProps> = ({ label, options, action }) => {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         width: "100%",
+        padding: 0,
+        margin: 0,
       }}>
       <TextInput
         focusable={false}
-        style={{ width: "85%" }}
+        style={{ width: "100%", padding: 0, margin: 0 }}
         mode="outlined"
         label={label}
         value={selection}
         onFocus={() => { Keyboard.dismiss(); openMenu(); }}
       />
 
-      <Menu style={{ width: "15%", backgroundColor: 'transparent'}}
+      <Menu style={{ backgroundColor: 'transparent', transform: [{ translateX: -130 }, { translateY: 10 }] }}
         visible={visible}
         onDismiss={closeMenu}
         anchor={
           <Button
-            style={{ padding: 10 }}
+            style={{ padding: 10, transform: [{ translateX: -45 }] }}
             compact={true}
             onPress={openMenu}>
             <Icon name="sort-down" size={24} />
-          </Button>}>
+          </Button>}
+      >
         {options.map(option =>
-          <Menu.Item key={option} onPress={() => action(option)} title={option} />
+          <Menu.Item key={option} onPress={() => { action(option); closeMenu(); }} title={option} />
         )}
       </Menu>
 

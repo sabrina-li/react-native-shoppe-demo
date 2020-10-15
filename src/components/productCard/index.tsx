@@ -16,22 +16,22 @@ interface ProductCardProps {
   unit: string;
 }
 const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
-  const dispatch: AppDispatch  = useDispatch<AppDispatch>();
+  const dispatch: AppDispatch = useDispatch<AppDispatch>();
 
   return (
     <View key={props.title} style={{ width: '100%' }}>
-    <Card>
-      <Card.Cover source={{ uri: IMAGE_BASE_URL + props.image }} />
-      <Card.Content>
-        <Title>{props.title}</Title>
-        <Paragraph>{props.description}</Paragraph>
-      </Card.Content>
-      <Card.Actions>
-        <Button mode='contained'
-          onPress={() => { dispatch(addItem({...props})); }}>Add To Cart</Button>
-      </Card.Actions>
-    </Card>
-  </View>
+      <Card>
+        <Card.Cover source={{ uri: IMAGE_BASE_URL + props.image }} />
+        <Card.Content>
+          <Title>{props.title}</Title>
+          <Paragraph>{props.description}</Paragraph>
+        </Card.Content>
+        <Card.Actions>
+          <Button mode='contained'
+            onPress={() => { dispatch(addItem({ ...props })); }}>Add To Cart</Button>
+        </Card.Actions>
+      </Card>
+    </View>
   )
 }
 
