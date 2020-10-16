@@ -1,11 +1,11 @@
 export type BillingAddress = {
-  firstName: string;
-  lastName: string;
-  address1: string;
-  address2: string;
-  city: string;
-  state: States;
-  zipCode: number;
+  firstName: [string, boolean];
+  lastName: [string, boolean];
+  address1: [string, boolean];
+  address2: [string, boolean];
+  city: [string, boolean];
+  state: [States, boolean];
+  zipCode: [number, boolean];
 };
 
 export enum States {
