@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { Card, Title, Paragraph, Button } from 'react-native-paper';
 import { IMAGE_BASE_URL } from '../../../env.json';
-import { addItem, removeItem } from '../../redux/actions/ItemActions';
+import { ItemActions } from '../../redux/actions/ItemActions';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
 
@@ -29,9 +29,9 @@ const ItemCard: React.FC<ItemCardProps> = (props: ItemCardProps) => {
             <Paragraph>{props.description}</Paragraph>
           </Card.Content>
           <Card.Actions style={{ paddingTop: 50, paddingHorizontal: 20 }}>
-            <Button mode='contained' onPress={() => { dispatch(addItem({ ...props })); }}>+</Button>
+            <Button mode='contained' onPress={() => { dispatch(ItemActions.addItem({ ...props })); }}>+</Button>
             <Text style={{ width: "80%", textAlign: "center" }}>{props.quantity}</Text>
-            <Button mode='contained' onPress={() => { dispatch(removeItem({ ...props })); }}>-</Button>
+            <Button mode='contained' onPress={() => { dispatch(ItemActions.removeItem({ ...props })); }}>-</Button>
           </Card.Actions>
         </View>
       </View>

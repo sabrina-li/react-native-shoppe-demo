@@ -3,16 +3,16 @@ import { View, ScrollView } from 'react-native';
 
 import { Button, TextInput, Title, Portal, Dialog, Paragraph } from 'react-native-paper';
 import DropDown from '../../components/dropDown';
-import { Months, States, Years } from '../../types/billingAddress';
+import { BillingAddress, Months, States, Years } from '../../types/billingAddress';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from '../../redux/store';
+import { selectors } from '../../redux/selectors';
+import { BillingAddressActions } from '../../redux/actions/billingAddressActions';
 
 const CheckoutScreen: React.FC = () => {
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [address1, setAddress1] = React.useState('');
-  const [address2, setAddress2] = React.useState('');
-  const [city, setCity] = React.useState('');
-  const [usaState, setUSAStates] = React.useState('');
-  const [zipCode, setZipCode] = React.useState('');
+  const { firstName } = useSelector(selectors.billingAddressSelector);
+  const dispatch: AppDispatch = useDispatch<AppDispatch>();
+
   const [creditCardNumber, setCreditCardNumber] = React.useState('');
   const [month, setMonth] = React.useState('');
   const [year, setYear] = React.useState('');
@@ -33,10 +33,11 @@ const CheckoutScreen: React.FC = () => {
           style={{ padding: 5 }}
           mode="outlined"
           label="First Name"
-          value={firstName}
-          onChangeText={text => setFirstName(text)}
+          value={firstName[0]}
+          error={firstName[1]}
+          onChangeText={text => dispatch(BillingAddressActions.setFirstName(text))}
         />
-        <TextInput
+       {/*  <TextInput
           style={{ padding: 5 }}
           mode="outlined"
           label="Last Name"
@@ -134,8 +135,8 @@ const CheckoutScreen: React.FC = () => {
               <Button onPress={hideDialog}>Done</Button>
             </Dialog.Actions>
           </Dialog>
-        </Portal>
-      </View>
+        </Portal> */}
+      </View> 
     </ScrollView>
   );
 }

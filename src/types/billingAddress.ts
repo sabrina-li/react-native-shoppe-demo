@@ -4,8 +4,8 @@ export type BillingAddress = {
   address1: [string, boolean];
   address2: [string, boolean];
   city: [string, boolean];
-  state: [States, boolean];
-  zipCode: [number, boolean];
+  usaState: [States, boolean];
+  zipCode: [string, boolean];
 };
 
 export enum States {
