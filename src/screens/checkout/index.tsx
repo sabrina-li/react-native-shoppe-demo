@@ -10,19 +10,19 @@ import { selectors } from '../../redux/selectors';
 import { BillingAddressActions } from '../../redux/actions/billingAddressActions';
 
 const CheckoutScreen: React.FC = () => {
-  const { firstName } = useSelector(selectors.billingAddressSelector);
-  const dispatch: AppDispatch = useDispatch<AppDispatch>();
+  const { firstName, lastName, address1, address2, city, usaState, zipCode } = useSelector(selectors.billingAddressSelector);
+  // const { creditCardNumber, month, year, securityCode } = useSelector(selectors.);
+  const dispatch: AppDispatch = useDispatch();
 
-  const [creditCardNumber, setCreditCardNumber] = React.useState('');
-  const [month, setMonth] = React.useState('');
-  const [year, setYear] = React.useState('');
-  const [securityCode, setSecurityCode] = React.useState('');
+  // const [creditCardNumber, setCreditCardNumber] = React.useState('');
+  // const [month, setMonth] = React.useState('');
+  // const [year, setYear] = React.useState('');
+  // const [securityCode, setSecurityCode] = React.useState('');
 
   const [success, setSuccess] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
 
   const showDialog = () => setVisible(true);
-
   const hideDialog = () => setVisible(false);
 
   return (
@@ -37,33 +37,36 @@ const CheckoutScreen: React.FC = () => {
           error={firstName[1]}
           onChangeText={text => dispatch(BillingAddressActions.setFirstName(text))}
         />
-       {/*  <TextInput
+        <TextInput
           style={{ padding: 5 }}
           mode="outlined"
           label="Last Name"
-          value={lastName}
-          onChangeText={text => setLastName(text)}
+          value={lastName[0]}
+          error={lastName[1]}
+          onChangeText={text => dispatch(BillingAddressActions.setLastName(text))}
         />
         <TextInput
           style={{ padding: 5 }}
           mode="outlined"
           label="Address 1"
-          value={address1}
-          onChangeText={text => setAddress1(text)}
+          value={address1[0]}
+          error={address1[1]}
+          onChangeText={text => dispatch(BillingAddressActions.setAddress1(text))}
         />
         <TextInput
           style={{ padding: 5 }}
           mode="outlined"
-          label="Address 2"
-          value={address2}
-          onChangeText={text => setAddress2(text)}
+          value={address2[0]}
+          error={address2[1]}
+          onChangeText={text => dispatch(BillingAddressActions.setAddress2(text))}
         />
         <TextInput
           style={{ padding: 5 }}
           mode="outlined"
           label="City"
-          value={city}
-          onChangeText={text => setCity(text)}
+          value={city[0]}
+          error={city[1]}
+          onChangeText={text => dispatch(BillingAddressActions.setCity(text))}
         />
 
         <View
@@ -72,22 +75,23 @@ const CheckoutScreen: React.FC = () => {
           <View style={{ width: "50%", paddingRight: 5 }}>
             <DropDown
               options={Object.keys(States)}
-              action={(selection) => setUSAStates(selection)}
+              action={(selection) => BillingAddressActions.setUSAState(selection)}
               label="State"
-              selection={usaState === "" ? "State" : usaState} />
+              selection={usaState[0] === "" ? "State" : usaState[0]} />
           </View>
           <View style={{ width: "50%" }}>
             <TextInput
               style={{ paddingLeft: 5 }}
               mode="outlined"
               label="Zip Code"
-              value={zipCode}
-              onChangeText={text => setZipCode(text)}
+              value={zipCode[0]}
+              error={zipCode[1]}
+              onChangeText={text => dispatch(BillingAddressActions.setZipCode(text))}
             />
           </View>
         </View>
       </View>
-      <View style={{ padding: 15 }}>
+      {/* <View style={{ padding: 15 }}>
         <Title>Payment Details</Title>
         <TextInput
           style={{ padding: 5 }}
@@ -100,14 +104,16 @@ const CheckoutScreen: React.FC = () => {
         <View
           style={{ padding: 5, display: "flex", flexDirection: "row" }}
         >
-          <View style={{ width: "50%", paddingRight: 5 }}>
+          <View
+            style={{ width: "50%", paddingRight: 5 }}>
             <DropDown
               options={Months.map(String)}
               action={(selection) => setMonth(selection)}
               label="Month"
               selection={month === "" ? "Month" : month} />
           </View>
-          <View style={{ width: "50%", paddingLeft: 5 }}>
+          <View
+            style={{ width: "50%", paddingLeft: 5 }}>
             <DropDown
               options={Years.map(String)}
               action={(selection) => setYear(selection)}
@@ -122,7 +128,7 @@ const CheckoutScreen: React.FC = () => {
           value={securityCode}
           onChangeText={text => setSecurityCode(text)}
         />
-      </View>
+      </View> */}
       <View style={{ paddingBottom: 50, paddingHorizontal: 70 }}>
         <Button mode='contained' onPress={showDialog}>Complete Purchase</Button>
         <Portal>
@@ -135,8 +141,8 @@ const CheckoutScreen: React.FC = () => {
               <Button onPress={hideDialog}>Done</Button>
             </Dialog.Actions>
           </Dialog>
-        </Portal> */}
-      </View> 
+        </Portal>
+      </View>
     </ScrollView>
   );
 }

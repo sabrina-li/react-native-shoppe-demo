@@ -1,6 +1,6 @@
 import { BillingAddressActions } from './billingAddressActions';
 import { ItemActions } from './ItemActions';
-export const rootAction = {
+export const RootActions = {
   BillingAddressActions,
   ItemActions,
 }

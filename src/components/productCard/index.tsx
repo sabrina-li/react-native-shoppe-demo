@@ -4,7 +4,7 @@ import { Card, Title, Paragraph, Button } from 'react-native-paper';
 import { IMAGE_BASE_URL } from '../../../env.json';
 
 import { useDispatch } from 'react-redux';
-import { addItem } from '../../redux/actions/ItemActions';
+import { RootActions } from '../../redux/actions';
 import { AppDispatch } from '../../redux/store';
 
 interface ProductCardProps {
@@ -16,7 +16,8 @@ interface ProductCardProps {
   unit: string;
 }
 const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
-  const dispatch: AppDispatch = useDispatch<AppDispatch>();
+  const dispatch: AppDispatch = useDispatch();
+  const { addItem } = RootActions.ItemActions;
 
   return (
     <View key={props.title} style={{ width: '100%' }}>
