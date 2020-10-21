@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Keyboard, View } from 'react-native';
-import { Button, Menu, TextInput } from 'react-native-paper';
+import { Keyboard, View, Text } from 'react-native';
+import { Button, Menu, TextInput, Title } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface DropDownProps {
@@ -34,10 +34,10 @@ const DropDown: React.FC<DropDownProps> = ({ label, options, selection, error, a
         label={label}
         error={error}
         value={selection}
-        onFocus={() => {Keyboard.dismiss(); openMenu();}}
+        onFocus={() => { Keyboard.dismiss(); openMenu(); }}
       />
 
-      <Menu style={{ backgroundColor: 'transparent', transform: [{ translateX: -130 }, { translateY: 10 }] }}
+      <Menu style={{ backgroundColor: 'transparent', position: "relative", width: '50%' }}
         visible={visible}
         onDismiss={closeMenu}
         anchor={
@@ -49,7 +49,14 @@ const DropDown: React.FC<DropDownProps> = ({ label, options, selection, error, a
           </Button>}
       >
         {options.map(option =>
-          <Menu.Item key={option} onPress={() => { action(option); closeMenu(); }} title={option} />
+          <View key={option}
+            // @ts-ignore
+            fsAttribute={{inputlabel: label}}
+          >
+            <Button onPress={() => { action(option); closeMenu(); }} >
+              <Title > {option} </Title>
+            </Button>
+          </View>
         )}
       </Menu>
     </View>
