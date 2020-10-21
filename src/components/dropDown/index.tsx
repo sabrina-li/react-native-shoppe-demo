@@ -14,7 +14,6 @@ const DropDown: React.FC<DropDownProps> = ({ label, options, selection, action }
   const [visible, setVisible] = React.useState(false);
 
   const openMenu = () => setVisible(true);
-
   const closeMenu = () => setVisible(false);
 
   return (
@@ -27,12 +26,13 @@ const DropDown: React.FC<DropDownProps> = ({ label, options, selection, action }
         margin: 0,
       }}>
       <TextInput
+        showSoftInputOnFocus={false}
         focusable={false}
         style={{ width: "100%", padding: 0, margin: 0 }}
         mode="outlined"
         label={label}
         value={selection}
-        onFocus={() => { Keyboard.dismiss(); openMenu(); }}
+        onFocus={() => {Keyboard.dismiss(); openMenu();}}
       />
 
       <Menu style={{ backgroundColor: 'transparent', transform: [{ translateX: -130 }, { translateY: 10 }] }}
@@ -50,8 +50,6 @@ const DropDown: React.FC<DropDownProps> = ({ label, options, selection, action }
           <Menu.Item key={option} onPress={() => { action(option); closeMenu(); }} title={option} />
         )}
       </Menu>
-
-
     </View>
   );
 };
