@@ -1,6 +1,5 @@
-// import { BillingAddress, Months, States } from "../../types/billingAddress";
 import { Months, Years } from "../../types/billingAddress";
-import { PaymentInfo } from "../../types/paymentDetails";
+import { PaymentInfo } from "../../types/paymentInfo";
 
 const initialState: PaymentInfo = {
   creditCardNumber: ['', false],
@@ -9,7 +8,7 @@ const initialState: PaymentInfo = {
   securityCode: ['', false],
 }
 
-const billingAddressReducer = ((state: PaymentInfo = initialState, action): PaymentInfo => {
+const paymentInfoReducer = ((state: PaymentInfo = initialState, action): PaymentInfo => {
   switch (action.type) {
     case 'SET_CREDIT_CARD_NUMBER': {
       // validate credit cart number
@@ -46,4 +45,4 @@ const billingAddressReducer = ((state: PaymentInfo = initialState, action): Paym
   }
 });
 
-export default billingAddressReducer;
+export default paymentInfoReducer;

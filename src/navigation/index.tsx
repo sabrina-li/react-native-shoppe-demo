@@ -34,9 +34,8 @@ const AppNavigator = (props) => {
                 compact={true}
                 onPress={() => navigation.navigate('Cart')}>
                 <Icon name="shopping-cart" size={24} />
+                <Text style={{ color: colors.accent, marginTop: 7, marginRight: 10, fontSize: 20 }}> {props.itemsState.reduce((acc, cur) => acc + cur.quantity, 0)} </Text>
               </Button>
-
-              <Text style={{ color: colors.accent, marginTop: 7, marginRight: 10, fontSize: 20 }}>{props.itemsState.reduce((acc, cur) => acc + cur.quantity, 0)}</Text>
             </View>
           ),
         })}

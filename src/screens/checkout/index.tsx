@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, KeyboardAvoidingView, StyleSheet, Platform } from 'react-native';
+import { View, KeyboardAvoidingView, Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, TextInput, Title, Portal, Dialog, Paragraph } from 'react-native-paper';
@@ -7,21 +7,17 @@ import { useHeaderHeight } from '@react-navigation/stack';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import DropDown from '../../components/dropDown';
-import { States } from '../../types/billingAddress';
+import { Months, States, Years } from '../../types/billingAddress';
 import { AppDispatch } from '../../redux/store';
 import { selectors } from '../../redux/selectors';
 import { BillingAddressActions } from '../../redux/billingAddress/billingAddressActions';
+import { PaymentInfoActions } from '../../redux/paymentInfo/paymentInfoActions';
 
 
 const CheckoutScreen: React.FC = () => {
   const { firstName, lastName, address1, address2, city, usaState, zipCode } = useSelector(selectors.billingAddressSelector);
-  // const { creditCardNumber, month, year, securityCode } = useSelector(selectors.);
+  const { creditCardNumber, month, year, securityCode } = useSelector(selectors.paymentInfoSelector);
   const dispatch: AppDispatch = useDispatch();
-
-  // const [creditCardNumber, setCreditCardNumber] = React.useState('');
-  // const [month, setMonth] = React.useState('');
-  // const [year, setYear] = React.useState('');
-  // const [securityCode, setSecurityCode] = React.useState('');
 
   const [success, setSuccess] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
@@ -40,10 +36,10 @@ const CheckoutScreen: React.FC = () => {
       }}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
       enabled
-      keyboardVerticalOffset={headerHeight / 2}>
+      keyboardVerticalOffset={Platform.OS == "ios" ? headerHeight : headerHeight + 20}>
       <ScrollView>
         <View >
-          <View >
+          <View style={{ margin: 15 }}>
             <Title>Billing Address</Title>
             <TextInput
               style={{ margin: 5 }}
@@ -89,14 +85,15 @@ const CheckoutScreen: React.FC = () => {
             <View
               style={{ margin: 5, display: "flex", flexDirection: "row" }}
             >
-              <View style={{ width: "50%", marginRight: 5 }}>
+              <View style={{ width: "50%", paddingRight: 5 }}>
                 <DropDown
                   options={Object.keys(States)}
                   action={(selection) => dispatch(BillingAddressActions.setUSAState(selection))}
                   label="State"
+                  error={usaState[1]}
                   selection={usaState[0] === "" ? "State" : usaState[0]} />
               </View>
-              <View style={{ width: "50%" }}>
+              <View style={{ width: "50%", paddingLeft: 5 }}>
                 <TextInput
                   style={{ marginLeft: 5 }}
                   mode="outlined"
@@ -108,14 +105,15 @@ const CheckoutScreen: React.FC = () => {
               </View>
             </View>
           </View>
-          {/* <View style={{ padding: 15 }}>
+          <View style={{ padding: 15 }}>
             <Title>Payment Details</Title>
             <TextInput
               style={{ padding: 5 }}
               mode="outlined"
               label="Credit Card Number"
-              value={creditCardNumber}
-              onChangeText={text => setCreditCardNumber(text)}
+              value={creditCardNumber[0]}
+              error={creditCardNumber[1]}
+              onChangeText={text => dispatch(PaymentInfoActions.setCreditCartNumber(text))}
             />
 
             <View
@@ -125,30 +123,33 @@ const CheckoutScreen: React.FC = () => {
                 style={{ width: "50%", paddingRight: 5 }}>
                 <DropDown
                   options={Months.map(String)}
-                  action={(selection) => setMonth(selection)}
+                  action={(selection) => dispatch(PaymentInfoActions.setMonth(selection))}
                   label="Month"
-                  selection={month === "" ? "Month" : month} />
+                  error={month[1]}
+                  selection={month[0] === "" ? "Month" : month[0]} />
               </View>
               <View
                 style={{ width: "50%", paddingLeft: 5 }}>
                 <DropDown
                   options={Years.map(String)}
-                  action={(selection) => setYear(selection)}
+                  action={(selection) => dispatch(PaymentInfoActions.setYear(selection))}
                   label="Year"
-                  selection={year === "" ? "Year" : year} />
+                  error={year[1]}
+                  selection={year[0] === "" ? "Year" : year[0]} />
               </View>
             </View>
             <TextInput
               style={{ padding: 5 }}
               mode="outlined"
               label="Security Code"
-              value={securityCode}
-              onChangeText={text => setSecurityCode(text)}
+              value={securityCode[0]}
+              error={securityCode[1]}
+              onChangeText={text => dispatch(PaymentInfoActions.setSecurityCode(text))}
             />
-          </View> */}
+          </View>
         </View>
       </ScrollView>
-      <View style={{ height: 100 }}>
+      <View style={{ margin: 10 }}>
         <Button mode='contained' onPress={showDialog}>Complete Purchase</Button>
       </View>
       <Portal>
@@ -165,31 +166,6 @@ const CheckoutScreen: React.FC = () => {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  inner: {
-    paddingBottom: 100,
-    flex: 1,
-    justifyContent: "space-around"
-  },
-  header: {
-    fontSize: 36,
-    marginBottom: 48
-  },
-  textInput: {
-    height: 40,
-    borderColor: "#000000",
-    borderBottomWidth: 1,
-    marginBottom: 36
-  },
-  btnContainer: {
-    backgroundColor: "white",
-    marginTop: 12
-  }
-});
 
 export default CheckoutScreen;
 

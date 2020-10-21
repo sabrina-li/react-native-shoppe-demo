@@ -7,10 +7,11 @@ interface DropDownProps {
   options: string[];
   label: string;
   selection: string;
+  error: boolean;
   action: (selection: string) => void;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ label, options, selection, action }) => {
+const DropDown: React.FC<DropDownProps> = ({ label, options, selection, error, action }) => {
   const [visible, setVisible] = React.useState(false);
 
   const openMenu = () => setVisible(true);
@@ -31,6 +32,7 @@ const DropDown: React.FC<DropDownProps> = ({ label, options, selection, action }
         style={{ width: "100%", padding: 0, margin: 0 }}
         mode="outlined"
         label={label}
+        error={error}
         value={selection}
         onFocus={() => {Keyboard.dismiss(); openMenu();}}
       />
