@@ -66,6 +66,10 @@ PODS:
     - boost-for-react-native
     - DoubleConversion
     - glog
+  - FullStory (1.8.2)
+  - fullstory_react-native (1.0.1):
+    - FullStory
+    - React
   - glog (0.3.5)
   - OpenSSL-Universal (1.0.2.20):
     - OpenSSL-Universal/Static (= 1.0.2.20)
@@ -336,6 +340,8 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitUserDefaultsPlugin (~> 0.54.0)
   - FlipperKit/SKIOSNetworkPlugin (~> 0.54.0)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
+  - "FullStory (from `{:http=>\"https://ios-releases.fullstory.com/fullstory-1.8.2.tar.gz\"}`)"
+  - "fullstory_react-native (from `../node_modules/@fullstory/react-native`)"
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -391,6 +397,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/FBReactNativeSpec"
   Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
+  FullStory:
+    :http: https://ios-releases.fullstory.com/fullstory-1.8.2.tar.gz
+  fullstory_react-native:
+    :path: "../node_modules/@fullstory/react-native"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   RCTRequired:
@@ -448,6 +458,10 @@ EXTERNAL SOURCES:
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
+CHECKOUT OPTIONS:
+  FullStory:
+    :http: https://ios-releases.fullstory.com/fullstory-1.8.2.tar.gz
+
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
@@ -463,6 +477,8 @@ SPEC CHECKSUMS:
   Flipper-RSocket: 64e7431a55835eb953b0bf984ef3b90ae9fdddd7
   FlipperKit: ab353d41aea8aae2ea6daaf813e67496642f3d7d
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
+  FullStory: 165c5c4130ba4e4cb7ba94a644147fba784aeeb5
+  fullstory_react-native: 4225ae0284c672a42e3dd18f84ad3ed9e1610520
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   OpenSSL-Universal: ff34003318d5e1163e9529b08470708e389ffcdd
   RCTRequired: 48884c74035a0b5b76dbb7a998bd93bcfc5f2047
@@ -494,6 +510,6 @@ SPEC CHECKSUMS:
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 1740a5e364381c38170ac2d845c4c5ae32e6f011
+PODFILE CHECKSUM: 19712ce46e0178ca27f064004b23173562bbebeb
 
 COCOAPODS: 1.9.1

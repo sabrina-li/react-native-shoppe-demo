@@ -8,9 +8,9 @@ target 'ShoppeDemo' do
 
   use_react_native!(:path => config["reactNativePath"])
 
-
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-
+  pod 'FullStory', :http => 'https://ios-releases.fullstory.com/fullstory-1.8.2.tar.gz'
+  
   target 'ShoppeDemoTests' do
     inherit! :complete
     # Pods for testing

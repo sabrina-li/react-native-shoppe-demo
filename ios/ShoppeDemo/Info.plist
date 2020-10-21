@@ -16,6 +16,10 @@
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>FSHost</key>
+	<string>staging.fullstory.com</string>
+	<key>FSOrgId</key>
+	<string><YOUR_ORG_HERE></string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
