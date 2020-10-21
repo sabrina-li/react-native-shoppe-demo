@@ -22,7 +22,11 @@ const ProductCard: React.FC<ProductCardProps> = (props: ProductCardProps) => {
   return (
     <View key={props.title} style={{ width: '100%' }}>
       <Card>
-        <Card.Cover source={{ uri: IMAGE_BASE_URL + props.image }} />
+        <Card.Cover
+          // @ts-ignore 
+          fsClass='fs-unmask'
+          source={{ uri: IMAGE_BASE_URL + props.image }}
+        />
         <Card.Content>
           <Title>{props.title}</Title>
           <Paragraph>{props.description}</Paragraph>

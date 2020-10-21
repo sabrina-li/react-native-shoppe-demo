@@ -10,7 +10,11 @@ const CartScreen: React.FC = () => {
   const items = useSelector(selectors.itemSelector);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View
+      // @ts-ignore 
+      fsClass='fs-unmask'
+      style={{ flex: 1 }}
+    >
       <CartHeader />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         {items.map(item =>
