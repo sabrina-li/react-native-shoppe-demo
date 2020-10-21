@@ -1,5 +1,5 @@
 import { BillingAddress, States } from "../../types/billingAddress";
-import { BillingAddressActions } from "../actions/billingAddressActions";
+import { BillingAddressActions } from "./billingAddressActions";
 
 const initialState: BillingAddress = {
   firstName: ['', false],
@@ -15,49 +15,49 @@ const billingAddressReducer = ((state: BillingAddress = initialState, action): B
   switch (action.type) {
     case 'SET_FIRST_NAME': {
       // validate first name
-      let error = action.payload === '';
+      const error = action.payload === '';
       const firstName: [string, boolean] = [action.payload, error];
       const newState = { ...state, firstName };
       return newState;
     }
     case 'SET_LAST_NAME': {
       // validate lase name
-      let error = action.payload === '';
+      const error = action.payload === '';
       const lastName: [string, boolean] = [action.payload, error];
       const newState = { ...state, lastName };
       return newState;
     }
     case 'SET_ADDRESS_1': {
       // validate address 1
-      let error = action.payload === '';
+      const error = action.payload === '';
       const address1: [string, boolean] = [action.payload, error];
       const newState = { ...state, address1 };
       return newState;
     }
     case 'SET_ADDRESS_2': {
       // validate address 2
-      let error = action.payload === '';
+      const error = action.payload === '';
       const address2: [string, boolean] = [action.payload, error];
       const newState = { ...state, address2 };
       return newState;
     }
     case 'SET_USA_STATE': {
       // validate state
-      let error = !(action.payload in States);
+      const error = !(action.payload in States);
       const usaState: [States, boolean] = [action.payload, error];
       const newState  = { ...state, usaState };
       return newState;
     }
     case 'SET_ZIP_CODE': {
       // validate zip code
-      let error = null !== action.payload?.match('\d{5}');
+      const error = null !== action.payload?.match('\d{5}');
       const zipCode: [string, boolean] = [action.payload, error];
       const newState = { ...state, zipCode };
       return newState;
     }
     case 'SET_CITY': {
       // validate first name
-      let error = action.payload === '';
+      const error = action.payload === '';
       const city: [string, boolean] = [action.payload, error];
       const newState = { ...state, city };
       return newState;

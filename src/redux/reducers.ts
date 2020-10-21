@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import billingAddressReducer from './billingAddressReducer';
-import itemsReducer from './ItemReducer';
+import billingAddressReducer from './billingAddress/billingAddressReducer';
+import itemsReducer from './items/ItemReducer';
 
 export const rootReducer = combineReducers({
   itemsState: itemsReducer,

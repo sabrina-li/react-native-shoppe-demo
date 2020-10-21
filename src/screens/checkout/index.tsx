@@ -10,7 +10,7 @@ import DropDown from '../../components/dropDown';
 import { States } from '../../types/billingAddress';
 import { AppDispatch } from '../../redux/store';
 import { selectors } from '../../redux/selectors';
-import { BillingAddressActions } from '../../redux/actions/billingAddressActions';
+import { BillingAddressActions } from '../../redux/billingAddress/billingAddressActions';
 
 
 const CheckoutScreen: React.FC = () => {

@@ -1,6 +1,6 @@
-export type PaymentDetails = {
-  creditCardNumber: [number, boolean];
-  month: [number, boolean];
-  year: [number, boolean];
-  securityCode: [number, boolean];
+export type PaymentInfo = {
+  creditCardNumber: [string, boolean];
+  month: [string, boolean];
+  year: [string, boolean];
+  securityCode: [string, boolean];
 };
