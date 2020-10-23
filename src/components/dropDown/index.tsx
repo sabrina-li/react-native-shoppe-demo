@@ -49,7 +49,10 @@ const DropDown: React.FC<DropDownProps> = ({ label, options, selection, error, a
           </Button>}
       >
         {options.map(option =>
-          <View key={option} >
+          <View 
+            // @ts-ignore
+            fsAttribute={{inputlabel: label}}
+            key={option} >
             <Button onPress={() => { action(option); closeMenu(); }} >
               <Title > {option} </Title>
             </Button>
