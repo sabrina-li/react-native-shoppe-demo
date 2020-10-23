@@ -108,6 +108,8 @@ const CheckoutScreen: React.FC = () => {
           <View style={{ padding: 15 }}>
             <Title>Payment Details</Title>
             <TextInput
+              // @ts-ignore
+              fsClass="fs-exclude"
               style={{ padding: 5 }}
               mode="outlined"
               label="Credit Card Number"
@@ -120,6 +122,8 @@ const CheckoutScreen: React.FC = () => {
               style={{ padding: 5, display: "flex", flexDirection: "row" }}
             >
               <View
+                // @ts-ignore
+                fsClass="fs-exclude"
                 style={{ width: "50%", paddingRight: 5 }}>
                 <DropDown
                   options={Months.map(String)}
@@ -129,6 +133,8 @@ const CheckoutScreen: React.FC = () => {
                   selection={month[0] === "" ? "Month" : month[0]} />
               </View>
               <View
+                // @ts-ignore
+                fsClass="fs-exclude"
                 style={{ width: "50%", paddingLeft: 5 }}>
                 <DropDown
                   options={Years.map(String)}
@@ -139,6 +145,8 @@ const CheckoutScreen: React.FC = () => {
               </View>
             </View>
             <TextInput
+              // @ts-ignore
+              fsClass="fs-exclude"
               style={{ padding: 5 }}
               mode="outlined"
               label="Security Code"

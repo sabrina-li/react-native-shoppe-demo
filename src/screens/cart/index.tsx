@@ -11,6 +11,8 @@ const CartScreen: React.FC = () => {
 
   return (
     <View
+      // @ts-ignore
+      fsClass="fs-unmask"
       style={{ flex: 1 }}
     >
       <CartHeader />
