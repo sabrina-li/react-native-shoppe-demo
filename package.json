@@ -8,9 +8,12 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "both": "react-native run-android && react-native run-ios"
+    "both": "react-native run-android && react-native run-ios",
+    "preinstall": "npm install ../fullstory-react-native",
+    "postinstall": "npm link ../@fullstory/react-native"
   },
   "dependencies": {
+    "@fullstory/react-native": "file:../fullstory-react-native",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.7.5",
     "@react-navigation/stack": "^5.9.2",
@@ -24,7 +27,7 @@
     "react-native-vector-icons": "^7.1.0",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
-    "@fullstory/react-native": "1.0.1"
+    "typescript": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
