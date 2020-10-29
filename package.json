@@ -11,7 +11,8 @@
     "both": "react-native run-android && react-native run-ios"
   },
   "dependencies": {
-    "@fullstory/react-native": "file:../fullstory-react-native",
+    "@fullstory/babel-plugin-react-native": "^1.0.0",
+    "@fullstory/react-native": "^1.0.1",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.7.5",
     "@react-navigation/stack": "^5.9.2",
